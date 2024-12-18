@@ -44,7 +44,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('campaign/', include('campaign.urls')),
     path('profiles/', include('profiles.urls')),
-    # path('customers/', include('customers.urls')),
+    path('customers/', include('customers.urls')),
     path('donations/', include('donations.urls')),
     path('wallet/', include('wallet.urls')),
     path('activitylog/', include('activitylog.urls')),
