@@ -54,11 +54,11 @@ CUSTOM_APPS = [
 
     'custom_user',
     # 'campaign',
-    # 'profiles',
+    'profiles',
     # 'customers',
     # 'donations',
     # 'wallet',
-    # 'activitylog',
+    'activitylog',
     # 'comment',
     
     
