@@ -57,7 +57,7 @@ CUSTOM_APPS = [
     'profiles',
     # 'customers',
     'donations',
-    # 'wallet',
+    'wallet',
     'activitylog',
     # 'comment',
     

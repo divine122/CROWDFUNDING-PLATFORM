@@ -46,7 +46,7 @@ urlpatterns = [
     path('profiles/', include('profiles.urls')),
     # path('customers/', include('customers.urls')),
     path('donations/', include('donations.urls')),
-    # path('wallet/', include('wallet.urls')),
+    path('wallet/', include('wallet.urls')),
     path('activitylog/', include('activitylog.urls')),
     # path('comment/', include('comment.urls')),
     
