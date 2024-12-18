@@ -59,7 +59,7 @@ CUSTOM_APPS = [
     'donations',
     'wallet',
     'activitylog',
-    # 'comment',
+    'comment',
     
     
 
