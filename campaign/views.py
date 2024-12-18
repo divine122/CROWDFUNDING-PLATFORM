@@ -3,15 +3,16 @@ from django.shortcuts import render
 # Create your views here.
 
 from django.shortcuts import render
-from .models import Campaign,CampaignPage
+from .models import Campaign,CampaignPage,Backer
 from rest_framework import status,permissions,response,views
-from.serializers import CampaignSerializer,CreateCampaignSerializer,CampaignPageSerializer
+from.serializers import CampaignSerializer,CreateCampaignSerializer,CampaignPageSerializer,BackerSerializer
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.parsers import MultiPartParser,FormParser
 from django.db.models import Count
 from rest_framework.schemas import AutoSchema
 from django.db.models.functions import TruncDate
 from .engines import recommend_campaigns
+from rest_framework.decorators import action
 
 class CampaignView(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -27,6 +28,35 @@ class CampaignView(views.APIView):
             campaign = serializer.save(created_by=request.user)
             return response.Response({"message": "Campaign created successfully", "project": campaign.id}, status=201)
         return response.Response(serializer.errors, status=400)
+    
+    @swagger_auto_schema(request_body=BackerSerializer)
+    @action(detail=True, methods=['post'], permission_classes=[permissions.IsAuthenticated])
+    def add_backer(self, request, *args, **kwargs):
+        """Add a backer to the campaign"""
+        campaign_id = kwargs.get('pk')  # Get campaign ID from URL
+        campaign = Campaign.objects.get(id=campaign_id)
+
+        pledged_amount = request.data.get('pledged_amount')
+        reward = request.data.get('reward', None)  # optional field for reward
+        user = request.user  # The user backing the campaign
+
+        if not pledged_amount:
+            return response.Response({"error": "Pledged amount is required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Create the backer record
+        backer = Backer.objects.create(
+            user=user,
+            campaign=campaign,
+            pledged_amount=pledged_amount,
+            reward=reward
+        )
+
+        # You may want to update the campaign's raised amount
+        campaign.update_goal(pledged_amount)
+
+        return response.Response(BackerSerializer(backer).data, status=status.HTTP_201_CREATED)
+
+
 
    
 

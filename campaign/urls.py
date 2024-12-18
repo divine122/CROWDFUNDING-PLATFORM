@@ -8,4 +8,5 @@ urlpatterns = [
     path('campaign-delete<int:pk>/', views.DeleteCampaignView.as_view()),
     path('campaigns/<int:campaign_id>/page-views/', views.CampaignPageView.as_view()),
     path('recommendations/', views.CampaignRecommendationView.as_view()),
+    path('campaigns/<int:pk>/add_backer/', views.CampaignView.as_view()),
 ]

@@ -60,7 +60,13 @@ class Campaign(models.Model):
 
     def __str__(self):
         return self.title
+    
+    
+    def update_goal(self,pledged_amount):
+        self.raised_amount += pledged_amount
+        self.save()
 
+    
 
     def is_active(self):
         return self.status == 'ACTIVE' and self.deadline > timezone.now()
@@ -82,4 +88,21 @@ class CampaignPage(models.Model):
     def __str__(self):
         return f"Page view for Campaign {self.campaign.id} by User {self.user_id if self.user_id else 'Anonymous'}"
 
+
+
+class Backer(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE)
+    pledged_amount = models.DecimalField(decimal_places=2, max_digits=10)
+    reward = models.TextField(null=True, blank=True)
+    date_backed = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.reward
+    
+
+    
+    def save(self,*args,**kwargs,):
+        self.campaign.update_goal(self.pledged_amount)
+        super().save(*args, **kwargs)
 

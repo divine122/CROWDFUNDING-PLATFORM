@@ -1,7 +1,9 @@
 from django.contrib import admin
 
 # Register your models here.
-from . models import Campaign,CampaignPage,Category
+from . models import Campaign,CampaignPage,Category,Backer
+
+admin.site.register(Backer)
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
