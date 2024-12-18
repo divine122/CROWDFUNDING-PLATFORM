@@ -12,13 +12,13 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from datetime import timedelta
 from pathlib import Path
-# import cloudinary
-# import cloudinary.uploader
-# import cloudinary.api
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 import os
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
-# load_dotenv()
+load_dotenv()
 
 
 from pathlib import Path
@@ -53,10 +53,10 @@ DJANGO_APPS = [
 CUSTOM_APPS = [
 
     'custom_user',
-    # 'campaign',
+    'campaign',
     'profiles',
     # 'customers',
-    # 'donations',
+    'donations',
     # 'wallet',
     'activitylog',
     # 'comment',
@@ -155,7 +155,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-# MEDIA_URL = 'https://res.cloudinary.com/dfok4j5ub/'
+MEDIA_URL = 'https://res.cloudinary.com/dfok4j5ub/'
 
 
 # Default primary key field type
@@ -164,26 +164,21 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': [
-#         'rest_framework_simplejwt.authentication.JWTAuthentication',  
-#         'rest_framework.authentication.SessionAuthentication',       
-#         'rest_framework.authentication.BasicAuthentication',         
-#     ],
-#     'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.IsAuthenticated', 
-#     ],
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',  
+        'rest_framework.authentication.SessionAuthentication',       
+        'rest_framework.authentication.BasicAuthentication',         
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated', 
+    ],
+}
 
-# SIMPLE_JWT = {
-#     'AUTH_HEADER_TYPES': ('Bearer',),  
-# }
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('Bearer',),  
+}
 
-
-
-# SIMPLE_JWT = {
-#    'AUTH_HEADER_TYPES': ('Bearer',),
-# }
 
 PASSWORD_RESET_CONFIRM_URL = True
 USERNAME_RESET_CONFIRM_URL = True
@@ -200,30 +195,30 @@ AUTH_USER_MODEL = 'custom_user.User'
 
 
 
-# CLOUDINARY_STORAGE = {
-#     'CLOUD_NAME': os.getenv('CLOUD_NAME'),
-#     'API_KEY': os.getenv('API_KEY'),
-#     'API_SECRET': os.getenv('API_SECRET'),
-# }
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUD_NAME'),
+    'API_KEY': os.getenv('API_KEY'),
+    'API_SECRET': os.getenv('API_SECRET'),
+}
 
 
 
 
-# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 
 
-# # Use Django's console email backend for local testing
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# Use Django's console email backend for local testing
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# # Optional: You can still specify the email details like FROM email address, etc.
-# DEFAULT_FROM_EMAIL = 'no-reply@yourapp.com'
+# Optional: You can still specify the email details like FROM email address, etc.
+DEFAULT_FROM_EMAIL = 'no-reply@yourapp.com'
 
-# # You don't need to specify the SMTP server since you're not sending real emails
-# # But if you still want to, you can provide dummy values
-# EMAIL_HOST = 'localhost'
-# EMAIL_PORT = 1025
+# You don't need to specify the SMTP server since you're not sending real emails
+# But if you still want to, you can provide dummy values
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
 
 
 
