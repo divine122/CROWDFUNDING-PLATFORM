@@ -16,9 +16,8 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
+from decouple import config
+import dj_database_url
 
 
 from pathlib import Path
@@ -34,9 +33,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-y*t2pq=#un^#3c$b#5*h5xaj@#u&-4clxao=-q))yk&!rz7s$$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+DEBUG = config('DEBUG', default=True, cast=bool)
+
+ALLOWED_HOSTS = [
+ 
+    'localhost',
+    '127.0.0.1',
+    "crowdfunding.pythonanywhere.com",
+]
+
+
 
 
 # Application definition
@@ -71,6 +78,8 @@ THIRDPARTY_APPS = [
     'djoser',
     'rest_framework_simplejwt',
     'corsheaders',
+    'cloudinary_storage',
+    'cloudinary',
     
     
 
@@ -123,8 +132,16 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        'OPTIONS': {
+            'timeout': 20,  
+        },
     }
 }
+
+
+
+
+
 
 
 # Password validation
@@ -163,7 +180,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-MEDIA_URL = 'https://res.cloudinary.com/dfok4j5ub/'
+MEDIA_URL = 'media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -210,6 +228,7 @@ CLOUDINARY_STORAGE = {
     'API_KEY': os.getenv('API_KEY'),
     'API_SECRET': os.getenv('API_SECRET'),
 }
+
 
 
 
