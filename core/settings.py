@@ -14,10 +14,10 @@ from datetime import timedelta
 from pathlib import Path
 import cloudinary
 import cloudinary.uploader
-import cloudinary.api
+
 import os
 from decouple import config
-import dj_database_url
+
 
 
 from pathlib import Path
@@ -37,12 +37,10 @@ SECRET_KEY = 'django-insecure-y*t2pq=#un^#3c$b#5*h5xaj@#u&-4clxao=-q))yk&!rz7s$$
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = [
- 
+    'diddy.pythonanywhere.com',
     'localhost',
     '127.0.0.1',
-    "crowdfunding.pythonanywhere.com",
 ]
-
 
 
 
