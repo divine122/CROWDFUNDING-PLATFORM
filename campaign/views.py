@@ -28,7 +28,7 @@ class CampaignView(views.APIView):
             campaign = serializer.save(created_by=request.user)
             return response.Response({"message": "Campaign created successfully", "project": campaign.id}, status=201)
         return response.Response(serializer.errors, status=400)
-    
+
     @swagger_auto_schema(request_body=BackerSerializer)
     @action(detail=True, methods=['post'], permission_classes=[permissions.IsAuthenticated])
     def add_backer(self, request, *args, **kwargs):

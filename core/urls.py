@@ -54,7 +54,7 @@ urlpatterns = [
     path('wallet/', include('wallet.urls')),
     path('activitylog/', include('activitylog.urls')),
     path('comment/', include('comment.urls')),
-    path('favicon.ico/', RedirectView.as_view(url='/static/favicon.ico')),  
+   
     
     
    
