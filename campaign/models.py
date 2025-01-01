@@ -2,9 +2,9 @@ from django.db import models
 
 # Create your models here.
 from datetime import timezone
-from django.db import models
+
 from django.contrib.auth import get_user_model
-from django.utils.text import slugify
+
 from donations.models import Donation   
 
 
@@ -69,8 +69,7 @@ class Campaign(models.Model):
     
 
     def is_active(self):
-        return self.status == 'ACTIVE' and self.deadline > timezone.now()
-    
+       return self.status == 'ACTIVE' and (self.deadline is not None and self.deadline > timezone.now())
 
     def get_total_donations(self):
         return Donation.objects.filter(campaign=self).aggregate(total_donations=models.Sum('amount'))['total_donations'] or 0

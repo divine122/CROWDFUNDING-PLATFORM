@@ -23,15 +23,15 @@ def recommend_campaigns(user_id):
     user_profile = get_user_profile(user_id)
     user_interested_categories = set(user_profile.keys())
 
-    recommended_camapigns = []
+    recommended_campaigns = []
 
     for campaign in Campaign.objects.all():
         common_categories = user_interested_categories.intersection(
             set(campaign.categories.values_list('name',flat=True))
         )
         if common_categories:
-            recommended_camapigns.append(campaign)
+            recommended_campaigns.append(campaign)
 
 
-    return recommended_camapigns        
+    return recommended_campaigns        
         
