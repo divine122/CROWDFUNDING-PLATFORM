@@ -22,6 +22,8 @@ from drf_yasg import openapi
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
+from django.http import JsonResponse
+
 
 
 
@@ -40,6 +42,7 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
+    path('', lambda request: JsonResponse({'message': 'Welcome to Crowdfunding Platform'})),
     path('supersecrets/', admin.site.urls),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
