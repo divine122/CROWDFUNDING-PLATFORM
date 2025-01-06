@@ -79,6 +79,8 @@ THIRDPARTY_APPS = [
     'corsheaders',
     'cloudinary_storage',
     'cloudinary',
+    'crispy_forms',
+    'crispy_tailwind',
     
     
 
@@ -228,6 +230,10 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.getenv('API_SECRET'),
 }
 
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+
+CRISPY_TEMPLATE_PACK = "tailwind"
 
 
 
