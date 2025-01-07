@@ -1,4 +1,7 @@
+# admin.py
+
 from django.contrib import admin
+from .models import Campaign, CampaignPage, Category, Backer
 
 # Register your models here.
 from . models import Campaign,CampaignPage,Category,Backer
@@ -49,7 +52,3 @@ class CampaignAdmin(admin.ModelAdmin):
     def mark_as_draft(self,request,queryset):
         queryset.update(status=Campaign.DRAFT)
         self.message_user(request, "Selected campaigns are draft")       
-
-
-    
-

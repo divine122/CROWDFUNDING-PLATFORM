@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-10">
+    <div class="bg-white shadow-lg rounded-lg p-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Delete Campaign</h1>
+        <p class="text-gray-600 mb-4">Are you sure you want to delete the campaign "{{ campaign.title }}"?</p>
+        
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-6">
+                <button type="submit" class="w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-400">
+                    Yes, Delete Campaign
+                </button>
+            </div>
+        </form>
+
+        <div class="mt-8">
+            <a href="{% url 'campaign_list' %}" class="text-blue-600 hover:text-blue-500">Cancel</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
