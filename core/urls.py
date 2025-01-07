@@ -16,13 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from campaign import views
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
-from django.http import JsonResponse
+
 
 
 
@@ -42,7 +43,7 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
-    path('', lambda request: JsonResponse({'message': 'Welcome to Crowdfunding Platform'})),
+    path('', views.home_page, name='home'),
     path('supersecrets/', admin.site.urls),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),

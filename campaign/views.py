@@ -60,6 +60,8 @@ from django.contrib import messages
 
 #         return response.Response(BackerSerializer(backer).data, status=status.HTTP_201_CREATED)
 
+def home_page(request):
+    return render(request, 'home.html') 
 
 class CampaignView:
     def get(self, request, campaign_id):
