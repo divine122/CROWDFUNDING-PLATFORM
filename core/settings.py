@@ -45,6 +45,9 @@ ALLOWED_HOSTS = [
 
 
 
+
+
+
 # Application definition
 
 DJANGO_APPS = [
@@ -231,9 +234,6 @@ CLOUDINARY_STORAGE = {
 }
 
 
-CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
-
-CRISPY_TEMPLATE_PACK = "tailwind"
 
 
 
@@ -303,3 +303,5 @@ DJOSER = {
     'SERIALIZERS': {},
     "LOGOUT_ON_PASSWORD_CHANGE": True
 }
+
+
