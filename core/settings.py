@@ -37,7 +37,7 @@ SECRET_KEY = 'django-insecure-y*t2pq=#un^#3c$b#5*h5xaj@#u&-4clxao=-q))yk&!rz7s$$
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = [
-    'fundhive.onrender.com',
+  'fundhive-u0yb.onrender.com',
     'localhost',
     '127.0.0.1',
 ]
