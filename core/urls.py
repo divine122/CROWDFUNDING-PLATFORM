@@ -20,9 +20,9 @@ from campaign import views
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
+from django.http import HttpResponse
 
 
 
@@ -43,7 +43,7 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
-    path('', views.home_page, name='home'),
+    path('', lambda request: HttpResponse("Welcome to Crowdfunding Platform"), name='home'),
     path('supersecrets/', admin.site.urls),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
@@ -69,6 +69,7 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
 
