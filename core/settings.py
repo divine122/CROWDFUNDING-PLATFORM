@@ -103,10 +103,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
 
-    'https://google.com',
+
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8000',  
+    'http://127.0.0.1:8000',  
 ]
+
 
 ROOT_URLCONF = 'core.urls'
 
@@ -304,4 +308,8 @@ DJOSER = {
     "LOGOUT_ON_PASSWORD_CHANGE": True
 }
 
-
+SECURE_SSL_REDIRECT = False  # This is crucial for local development to prevent HTTPS redirection
+SECURE_PROXY_SSL_HEADER = None
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = False
+SECURE_HSTS_SECONDS = 0  # Disable HSTS during local development
